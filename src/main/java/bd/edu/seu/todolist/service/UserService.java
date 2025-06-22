@@ -22,7 +22,7 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public List<User> getAllUsers() {
+    public Lis<User> getAllUsers() {
         return userRepository.findAll();
     }
 
