@@ -56,7 +56,9 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable()) // Disable CSRF for simplicity. Reconsider for production SPA.
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/register", "/login", "/api/auth/**", "/css/**", "/js/**").permitAll() // Public access
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated() // All other requests require authentication
+
                 )
                 .formLogin(form -> form
                         .loginPage("/login") // Custom login page
@@ -86,8 +88,7 @@ public class SecurityConfig {
                 admin.setRoles(roles);
                 userRepository.save(admin);
             }
-            // You might want to ensure ROLE_USER exists if your logic relies on it explicitly
-            // For this app, it's just a string assignment.
+
         };
     }
 }
