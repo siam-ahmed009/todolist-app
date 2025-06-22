@@ -1,0 +1,546 @@
+/*
+!* src/main/resources/static/css/styles.css *!
+
+body {
+    background-color: #f0f2f5; !* Light grey background *!
+    font-family: 'Roboto', sans-serif; !* Modern sans-serif font *!
+}
+
+.navbar-custom {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,.08);
+}
+
+.container-main {
+    max-width: 900px; !* Limit content width *!
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.card {
+    border: none;
+    border-radius: 12px; !* Rounded corners for cards *!
+    box-shadow: 0 4px 10px rgba(0,0,0,.08); !* Soft shadow *!
+    margin-bottom: 20px;
+}
+
+.card-header-custom {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 1.25rem 1.5rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    background-color: #fff;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.task-item:last-child {
+    border-bottom: none;
+}
+
+.task-item:hover {
+    background-color: #f9f9f9;
+}
+
+.task-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.task-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #343a40;
+}
+
+.task-description {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-top: 5px;
+}
+
+.task-actions {
+    margin-left: 20px;
+    white-space: nowrap; !* Prevent buttons from wrapping *!
+}
+
+.completed-task .task-title,
+.completed-task .task-description {
+    text-decoration: line-through;
+    color: #a0a0a0;
+}
+
+.completed-task {
+    background-color: #e9ecef; !* Light grey for completed tasks *!
+}
+
+.btn-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: .375rem .75rem; !* Adjust padding to make buttons slightly larger *!
+    font-size: .875rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    margin-left: 5px; !* Spacing between buttons *!
+}
+
+.btn-icon i {
+    margin-right: 5px; !* Space between icon and text *!
+}
+
+.btn-icon:last-child i {
+    margin-right: 0; !* No margin if it's the last icon-only button *!
+}
+
+!* Specific button styles *!
+.btn-toggle-complete {
+    background-color: #28a745; !* Green for mark complete *!
+    color: white;
+    border-color: #28a745;
+}
+.btn-toggle-complete.incomplete {
+    background-color: #ffc107; !* Orange for mark incomplete *!
+    color: #212529;
+    border-color: #ffc107;
+}
+.btn-delete {
+    background-color: #dc3545; !* Red for delete *!
+    color: white;
+    border-color: #dc3545;
+}
+
+!* Form styling *!
+.form-add-task .form-group {
+    margin-bottom: 15px;
+}
+.form-add-task .btn {
+    width: auto;
+}
+
+!* Alerts *!
+.alert {
+    border-radius: 8px;
+    font-size: 0.95rem;
+    padding: 0.75rem 1.25rem;
+}
+
+!* No tasks message *!
+.list-group-item.text-muted {
+    font-style: italic;
+    padding: 20px;
+    text-align: center;
+}
+*/
+
+
+/* src/main/resources/static/css/styles.css */
+
+/* General body styling for the entire application */
+body {
+    background: linear-gradient(to right bottom, #3a5c9a, #001f3f); /* Dark blue gradient background */
+    font-family: 'Poppins', sans-serif; /* Modern sans-serif font */
+    color: #f8f9fa; /* Light text color for contrast */
+    min-height: 100vh; /* Ensure body takes full viewport height */
+    display: flex;
+    flex-direction: column; /* For proper alignment of page content */
+}
+
+/* Custom Navbar for consistency */
+.navbar-custom {
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent white */
+    box-shadow: 0 2px 10px rgba(0,0,0,.2); /* Softer, wider shadow */
+    margin-bottom: 30px; /* Space below navbar */
+    border-radius: 0 0 15px 15px; /* Rounded bottom corners */
+}
+.navbar-brand, .navbar-text {
+    color: #ffffff !important; /* White text for brand/welcome */
+    font-weight: 500;
+}
+.btn-outline-warning {
+    color: #ffc107;
+    border-color: #ffc107;
+    transition: all 0.3s ease;
+}
+.btn-outline-warning:hover {
+    background-color: #ffc107;
+    color: #212529; /* Dark text on hover */
+    box-shadow: 0 0 15px rgba(255,193,7,0.5); /* Glowing effect */
+}
+
+/* Card styling (for ToDoList tasks, reusable for login/register if desired) */
+.card {
+    border: none;
+    border-radius: 15px; /* More rounded corners for cards */
+    box-shadow: 0 8px 25px rgba(0,0,0,.3); /* Stronger, deeper shadow */
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle transparency */
+    backdrop-filter: blur(10px); /* Glassmorphism effect */
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    color: #e0e0e0; /* Lighter text within cards */
+    overflow: hidden; /* Ensures rounded corners are respected */
+}
+
+.card-header-custom {
+    background-color: rgba(255, 255, 255, 0.08); /* Slightly less transparent header */
+    border-bottom: 1px solid rgba(255,255,255,0.1); /* Subtle border */
+    padding: 1.5rem 2rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #ffffff; /* White text for headers */
+    text-align: center; /* Centered header text */
+}
+
+/* Specific styling for login/register pages */
+.auth-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1; /* Allow container to take up remaining space */
+    padding: 20px 0;
+}
+
+.auth-card {
+    max-width: 450px; /* Slightly wider card for forms */
+    width: 100%;
+    padding: 30px; /* More internal padding */
+    background-color: rgba(255, 255, 255, 0.15); /* More prominent transparency */
+    box-shadow: 0 15px 40px rgba(0,0,0,.4); /* Even stronger shadow */
+    border-radius: 20px; /* Even more rounded */
+    border: 1px solid rgba(255,255,255,0.2); /* Subtle light border */
+}
+
+.auth-card .card-header {
+    background: none; /* Remove default header background */
+    border-bottom: none; /* Remove default header border */
+    font-size: 2.2rem; /* Larger title */
+    font-weight: 700;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 25px; /* Space below title */
+    padding: 0;
+}
+
+/* Input field styling */
+.form-control {
+    background-color: rgba(255, 255, 255, 0.1); /* Transparent background */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+    color: #ffffff; /* White text */
+    padding: 12px 18px; /* More padding */
+    border-radius: 8px; /* Rounded inputs */
+    transition: all 0.3s ease;
+}
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.7); /* Lighter placeholder text */
+}
+.form-control:focus {
+    background-color: rgba(255, 255, 255, 0.2); /* Slightly more opaque on focus */
+    border-color: #007bff; /* Primary blue border */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Bootstrap focus shadow */
+    color: #ffffff;
+}
+.form-control.is-invalid {
+    border-color: #dc3545; /* Red border for invalid */
+}
+.invalid-feedback {
+    color: #dc3545; /* Red text for feedback */
+    font-size: 0.85rem;
+}
+.form-group label {
+    color: #c9d2de; /* Lighter label text */
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+/* Button styling */
+.btn-primary {
+    background: linear-gradient(to right, #007bff, #0056b3); /* Blue gradient */
+    border: none;
+    border-radius: 8px;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4); /* Button shadow */
+}
+.btn-primary:hover {
+    background: linear-gradient(to right, #0056b3, #007bff); /* Reverse gradient or darker */
+    box-shadow: 0 5px 20px rgba(0, 123, 255, 0.6); /* More intense shadow */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* Link styling */
+.auth-card a {
+    color: #007bff; /* Primary blue for links */
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+.auth-card a:hover {
+    color: #0056b3; /* Darker blue on hover */
+    text-decoration: underline;
+}
+
+/* Alert messages */
+.alert {
+    border-radius: 8px;
+    font-size: 0.95rem;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.1); /* Transparent background */
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff; /* White text */
+}
+.alert-danger {
+    background-color: rgba(220, 53, 69, 0.2); /* Red tint for danger */
+    border-color: rgba(220, 53, 69, 0.4);
+    color: #ffcccc; /* Lighter red text */
+}
+.alert-success {
+    background-color: rgba(40, 167, 69, 0.2); /* Green tint for success */
+    border-color: rgba(40, 167, 69, 0.4);
+    color: #ccffcc; /* Lighter green text */
+}
+
+/* Task list specific styling (retained from previous steps) */
+.container-main {
+    max-width: 900px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.task-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.08); /* Subtle border */
+    background-color: rgba(255, 255, 255, 0.05); /* Very subtle transparency */
+    transition: background-color 0.2s ease-in-out;
+}
+.task-item:last-child {
+    border-bottom: none;
+}
+.task-item:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly more opaque on hover */
+}
+.task-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+.task-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #ffffff;
+}
+.task-description {
+    font-size: 0.9rem;
+    color: #a0a0a0;
+    margin-top: 5px;
+}
+.text-muted {
+    color: #c0c0c0 !important; /* Ensure muted text is visible */
+}
+.task-actions {
+    margin-left: 20px;
+    white-space: nowrap;
+}
+.completed-task .task-title,
+.completed-task .task-description {
+    text-decoration: line-through;
+    color: #888888;
+}
+.completed-task {
+    background-color: rgba(0, 0, 0, 0.1); /* Darker for completed tasks */
+}
+.btn-toggle-complete {
+    background-color: #28a745;
+    color: white;
+    border-color: #28a745;
+}
+.btn-toggle-complete.incomplete {
+    background-color: #ffc107;
+    color: #212529;
+    border-color: #ffc107;
+}
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+    border-color: #dc3545;
+}
+.btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+.btn-info:hover {
+    background-color: #138496;
+    border-color: #138496;
+}
+/* src/main/resources/static/css/styles.css */
+
+/* ... (previous styles for body, .navbar-custom, .card, .card-header-custom, etc.) ... */
+
+/* Input field styling (as defined previously) */
+.form-control {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    padding: 12px 18px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+.form-control:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    color: #ffffff;
+}
+.form-group label {
+    color: #c9d2de;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+/* For checkboxes within modal (specific override) */
+.form-check-input {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+.form-check-input:checked {
+    background-color: #007bff; /* Primary blue when checked */
+    border-color: #007bff;
+}
+.form-check-label {
+    color: #c9d2de;
+}
+
+/* Button styling (as defined previously, ensuring consistent hover/shadow) */
+.btn-primary {
+    background: linear-gradient(to right, #007bff, #0056b3);
+    border: none;
+    border-radius: 8px;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+}
+.btn-primary:hover {
+    background: linear-gradient(to right, #0056b3, #007bff);
+    box-shadow: 0 5px 20px rgba(0, 123, 255, 0.6);
+    transform: translateY(-2px);
+}
+
+/* Specific button styles for task actions (already good, just listed for context) */
+.btn-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: .375rem .75rem;
+    font-size: .875rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    margin-left: 5px;
+}
+.btn-icon i {
+    margin-right: 5px;
+}
+
+/* Edit button on task list (already using .btn-info) */
+.btn-info {
+    background-color: #17a2b8; /* A shade of blue-green */
+    border-color: #17a2b8;
+    color: white;
+    box-shadow: 0 3px 8px rgba(23,162,184,0.3); /* Subtle shadow for info button */
+}
+.btn-info:hover {
+    background-color: #138496; /* Darker on hover */
+    border-color: #138496;
+    box-shadow: 0 3px 12px rgba(23,162,184,0.5); /* Enhanced shadow on hover */
+    transform: translateY(-1px);
+}
+
+/* Modal specific buttons */
+.modal-footer .btn-primary { /* Targets Save Changes button */
+    /* Already covered by .btn-primary general style, but this ensures it's explicit */
+}
+
+.modal-footer .btn-secondary { /* Targets Cancel button */
+    background-color: rgba(255, 255, 255, 0.1); /* Transparent grey */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #c9d2de;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: none; /* No shadow by default */
+}
+.modal-footer .btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* More opaque on hover */
+    border-color: rgba(255, 255, 255, 0.4);
+    color: #ffffff;
+    box-shadow: 0 0 10px rgba(255,255,255,0.2); /* Subtle glow on hover */
+}
+
+/* Modal header (ensure it's styled consistently) */
+.modal-header {
+    background-color: rgba(255, 255, 255, 0.08); /* Consistent with card headers */
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    color: #ffffff;
+    border-radius: 15px 15px 0 0; /* Match modal content border-radius */
+}
+.modal-header .close {
+    color: #ffffff; /* White close button */
+    opacity: 0.8;
+}
+.modal-header .close:hover {
+    opacity: 1;
+}
+
+/* Modal content body background */
+.modal-content {
+    background-color: rgba(0, 0, 0, 0.7); /* Darker, more opaque background for readability */
+    backdrop-filter: blur(15px); /* Stronger blur for modal */
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 15px; /* Consistent rounded corners */
+    border: none;
+    box-shadow: 0 15px 40px rgba(0,0,0,.5); /* Stronger shadow for modal */
+}
+.modal-body {
+    color: #e0e0e0;
+}
+/* src/main/resources/static/css/styles.css */
+
+/* ... (previous existing styles) ... */
+
+/* New styles for password toggle icon */
+.input-group-text {
+    background-color: rgba(255, 255, 255, 0.15); /* Match input background or slightly darker */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Match input border */
+    border-left: none; /* No border on the left side to merge with input */
+    color: rgba(255, 255, 255, 0.7); /* Icon color */
+    cursor: pointer;
+    border-radius: 0 8px 8px 0; /* Rounded only on the right side */
+    padding: 12px 15px; /* Match input padding height */
+}
+
+.input-group-text:hover {
+    color: #ffffff; /* Brighter on hover */
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Fix for input field border if input-group is used with form-control */
+.input-group .form-control {
+    border-right: none; /* Remove right border to merge with append */
+    border-radius: 8px 0 0 8px; /* Rounded only on the left side */
+}
