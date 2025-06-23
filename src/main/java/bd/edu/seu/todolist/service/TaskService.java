@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.Arrays;
 
 @Service
 public class TaskService {
@@ -22,12 +24,19 @@ public class TaskService {
         return taskRepository.findByUserId(user.getId());
     }
 
+    public List<Task> getAllTasksForUserAndTag(User user, String tag) {
+        return taskRepository.findByUserIdAndTagsContaining(user.getId(), tag);
+    }
+
     public Optional<Task> getTaskByIdAndUser(String taskId, User user) {
         return taskRepository.findByIdAndUserId(taskId, user.getId());
     }
 
     public Task createTask(Task task, User user) {
         task.setUserId(user.getId());
+        if (task.getTags() == null) {
+            task.setTags(new java.util.HashSet<>());
+        }
         return taskRepository.save(task);
     }
 
@@ -37,6 +46,11 @@ public class TaskService {
         task.setTitle(taskDetails.getTitle());
         task.setDescription(taskDetails.getDescription());
         task.setCompleted(taskDetails.isCompleted());
+        if (taskDetails.getTags() != null) {
+            task.setTags(taskDetails.getTags());
+        } else {
+            task.setTags(new java.util.HashSet<>()); // Clear tags if null is passed
+        }
         return taskRepository.save(task);
     }
 

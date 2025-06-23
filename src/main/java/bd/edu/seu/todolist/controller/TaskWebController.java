@@ -13,6 +13,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 @Controller
 @RequestMapping("/tasks")
 public class TaskWebController {
@@ -41,16 +46,15 @@ public class TaskWebController {
     @PostMapping
     public String addTask(@Valid @ModelAttribute("newTask") Task task, BindingResult result,
                           RedirectAttributes redirectAttributes, @AuthenticationPrincipal UserDetails userDetails,
-                          Model model) { // <--- ADDED 'Model model' HERE
+                          Model model) {
         if (result.hasErrors()) {
-            // If validation errors, add the current tasks back to the model and return to the same page
             User currentUser = getCurrentUser(userDetails);
             model.addAttribute("tasks", taskService.getAllTasksForUser(currentUser)); // Re-populate existing tasks
-            // Also re-add the 'newTask' object so Thymeleaf can display errors correctly
             model.addAttribute("newTask", task); // The 'task' object now contains the submitted data with errors
             return "tasks"; // Stay on the tasks.html page to show errors
         }
         User currentUser = getCurrentUser(userDetails);
+        // The 'task' object from @ModelAttribute should already have tags bound from the form
         taskService.createTask(task, currentUser);
         redirectAttributes.addFlashAttribute("message", "Task added successfully!");
         return "redirect:/tasks"; // Redirect on success
